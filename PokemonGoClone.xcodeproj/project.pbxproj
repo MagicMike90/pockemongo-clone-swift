@@ -13,6 +13,8 @@
 		347A8A512267FBC50019322F /* PokemonGoClone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 347A8A4F2267FBC50019322F /* PokemonGoClone.xcdatamodeld */; };
 		347A8A532267FBC60019322F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 347A8A522267FBC60019322F /* Assets.xcassets */; };
 		347A8A562267FBC60019322F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347A8A542267FBC60019322F /* LaunchScreen.storyboard */; };
+		347A8A5E2268061F0019322F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347A8A5D2268061F0019322F /* MapViewController.swift */; };
+		347A8A602268062F0019322F /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347A8A5F2268062F0019322F /* PokedexViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		347A8A522267FBC60019322F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		347A8A552267FBC60019322F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		347A8A572267FBC60019322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		347A8A5D2268061F0019322F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		347A8A5F2268062F0019322F /* PokedexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				347A8A482267FBC50019322F /* AppDelegate.swift */,
 				347A8A4A2267FBC50019322F /* ViewController.swift */,
 				347A8A4C2267FBC50019322F /* Main.storyboard */,
+				347A8A5D2268061F0019322F /* MapViewController.swift */,
+				347A8A5F2268062F0019322F /* PokedexViewController.swift */,
 				347A8A522267FBC60019322F /* Assets.xcassets */,
 				347A8A542267FBC60019322F /* LaunchScreen.storyboard */,
 				347A8A572267FBC60019322F /* Info.plist */,
@@ -140,7 +146,9 @@
 			files = (
 				347A8A4B2267FBC50019322F /* ViewController.swift in Sources */,
 				347A8A512267FBC50019322F /* PokemonGoClone.xcdatamodeld in Sources */,
+				347A8A602268062F0019322F /* PokedexViewController.swift in Sources */,
 				347A8A492267FBC50019322F /* AppDelegate.swift in Sources */,
+				347A8A5E2268061F0019322F /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
