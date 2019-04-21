@@ -15,9 +15,12 @@ class MapViewController: UIViewController , CLLocationManagerDelegate , MKMapVie
     
     var manager = CLLocationManager()
     var updateCount = 0;
+    var pokemons = [Pokemon]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pokemons = getAllPokemons()
         
         manager.delegate = self
         
