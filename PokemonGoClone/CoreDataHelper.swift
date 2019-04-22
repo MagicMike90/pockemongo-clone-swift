@@ -19,6 +19,9 @@ func addAllPokemon() {
 }
 
 func createPokemon(name:String, imageName:String) {
+    
+    
+    
     if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
         let pokemon = Pokemon(context: context)
         pokemon.name = name;
@@ -40,6 +43,30 @@ func getAllPokemons() ->[Pokemon]{
                 }
                 return pokemons
             }
+        }
+    }
+    
+    return []
+}
+
+func getCaughtPokemon() -> [Pokemon] {
+    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+        let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
+        fetchRequest.predicate = NSPredicate(format: "caught == true")
+        if let pokemon = try? context.fetch(fetchRequest) {
+            return pokemon
+        }
+    }
+    
+    return []
+}
+
+func getUncaughtPokemon() -> [Pokemon] {
+    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+        let fetchRequest = Pokemon.fetchRequest() as NSFetchRequest<Pokemon>
+        fetchRequest.predicate = NSPredicate(format: "caught == false")
+        if let pokemon = try? context.fetch(fetchRequest) {
+            return pokemon
         }
     }
     

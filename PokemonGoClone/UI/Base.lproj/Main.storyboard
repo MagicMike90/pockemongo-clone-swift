@@ -84,6 +84,9 @@
                                     <constraint firstAttribute="width" constant="50" id="eU1-ax-zca"/>
                                 </constraints>
                                 <state key="normal" image="red-team"/>
+                                <connections>
+                                    <action selector="cancleTapped:" destination="jbe-0Z-tvI" eventType="touchUpInside" id="Hfd-wT-5gE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,6 +100,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iLM-5D-biE"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="0Fl-5u-Gl7" id="atz-Ge-WRI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SP3-MI-It4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
