@@ -24,10 +24,7 @@ class MapViewController: UIViewController , CLLocationManagerDelegate , MKMapVie
         
         manager.delegate = self
         
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            // Setup
-            setup()
-        } else {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             manager.requestWhenInUseAuthorization()
         }
     }
@@ -60,22 +57,70 @@ class MapViewController: UIViewController , CLLocationManagerDelegate , MKMapVie
         }
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        // reinitialize selection
+        mapView.deselectAnnotation(view.annotation, animated: true)
+        
+        if view.annotation is MKUserLocation {
+            // This is the user
+            centerTapped("Hello")
+        } else {
+            if let center = manager.location?.coordinate {
+                if let pokemonCenter =  view.annotation?.coordinate {
+                    let region = MKCoordinateRegion(center: pokemonCenter, latitudinalMeters: 200, longitudinalMeters: 200)
+                    
+                    if let pokemonAnnotaion = view.annotation as? PokeAnnotation {
+                        mapView.setRegion(region, animated: true)
+                        if let pokeName = pokemonAnnotaion.pokemon.name {
+                            // check if the user location is inside the visible map view
+                            if mapView.visibleMapRect.contains( MKMapPoint.init(center)) {
+                                pokemonAnnotaion.pokemon.caught =  true
+                                (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                                
+                                let alerveVC = UIAlertController(title: "Congrats", message: "You caught a \(pokeName)", preferredStyle: .alert)
+                                let pokedexAtion =  UIAlertAction(title: "Pokedex", style: .default) { (action) in
+                                    self.performSegue(withIdentifier: "moveToPokedex", sender: nil)
+                                }
+                                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                                    alerveVC.dismiss(animated: true, completion: nil)
+                                }
+                                alerveVC.addAction(pokedexAtion)
+                                alerveVC.addAction(okAction)
+                                present(alerveVC,animated: true, completion: nil)
+                                
+                            } else {
+                                let alerveVC = UIAlertController(title: "Oops", message: "You are too far away from this \(pokeName) to catch it. Try monving closer!", preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                                    alerveVC.dismiss(animated: true, completion: nil)
+                                }
+                                alerveVC.addAction(okAction)
+                                present(alerveVC,animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         
         if annotation is MKUserLocation {
             // Show the trainer
+            annoView.image =  UIImage(named: "player")
         } else {
             if let pokeAnnotation =  annotation as? PokeAnnotation {
                 if let imageName = pokeAnnotation.pokemon.imageName {
                     annoView.image =  UIImage(named: imageName)
-                    var frame = annoView.frame
-                    frame.size.height = 45
-                    frame.size.width = 45
-                    annoView.frame = frame
                 }
             }
         }
+        
+        var frame = annoView.frame
+        frame.size.height = 40
+        frame.size.width = 40
+        annoView.frame = frame
         
         return annoView
     }

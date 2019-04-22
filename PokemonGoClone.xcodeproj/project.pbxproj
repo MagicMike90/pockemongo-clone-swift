@@ -64,12 +64,9 @@
 		347A8A472267FBC50019322F /* PokemonGoClone */ = {
 			isa = PBXGroup;
 			children = (
+				349C8ACD226DA30200EF75BE /* UI */,
 				347A8A482267FBC50019322F /* AppDelegate.swift */,
 				347A8A4A2267FBC50019322F /* ViewController.swift */,
-				347A8A4C2267FBC50019322F /* Main.storyboard */,
-				347A8A5D2268061F0019322F /* MapViewController.swift */,
-				349C8ACB226D9D9C00EF75BE /* PokeAnnotation.swift */,
-				347A8A5F2268062F0019322F /* PokedexViewController.swift */,
 				347A8A522267FBC60019322F /* Assets.xcassets */,
 				347A8A542267FBC60019322F /* LaunchScreen.storyboard */,
 				347A8A572267FBC60019322F /* Info.plist */,
@@ -77,6 +74,17 @@
 				347A8A6122680CB40019322F /* CoreDataHelper.swift */,
 			);
 			path = PokemonGoClone;
+			sourceTree = "<group>";
+		};
+		349C8ACD226DA30200EF75BE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				349C8ACB226D9D9C00EF75BE /* PokeAnnotation.swift */,
+				347A8A4C2267FBC50019322F /* Main.storyboard */,
+				347A8A5F2268062F0019322F /* PokedexViewController.swift */,
+				347A8A5D2268061F0019322F /* MapViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

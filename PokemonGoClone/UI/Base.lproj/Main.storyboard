@@ -29,7 +29,7 @@
                                 </constraints>
                                 <state key="normal" image="pokeball"/>
                                 <connections>
-                                    <segue destination="jbe-0Z-tvI" kind="presentation" id="d3f-hO-6iJ"/>
+                                    <segue destination="jbe-0Z-tvI" kind="presentation" identifier="moveToPokedex" id="d3f-hO-6iJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jy-ik-c2i">

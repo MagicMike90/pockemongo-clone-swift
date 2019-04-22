@@ -11,9 +11,11 @@ import UIKit
 
 func addAllPokemon() {
     // Add pokemon one by one
-    createPokemon(name: "Pikachu", imageName: "Pikachu-2")
+    createPokemon(name: "Pikachu", imageName: "pikachu-2")
     createPokemon(name: "Psyduck", imageName: "psyduck")
     createPokemon(name: "Rattata", imageName: "rattata")
+    createPokemon(name: "Mew", imageName: "mew")
+    createPokemon(name: "Meowth", imageName: "meowth")
 }
 
 func createPokemon(name:String, imageName:String) {
