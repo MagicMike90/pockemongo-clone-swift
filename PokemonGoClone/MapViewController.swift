@@ -43,6 +43,41 @@ class MapViewController: UIViewController , CLLocationManagerDelegate , MKMapVie
         mapView.showsUserLocation = true;
         manager.startUpdatingLocation();
         mapView.delegate = self
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+            if let center = self.manager.location?.coordinate
+            {
+                var annoCoord = center
+                annoCoord.latitude += (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                annoCoord.longitude += (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                
+                let randomIndex = Int(arc4random_uniform(UInt32(self.pokemons.count)))
+                let randomPokemon = self.pokemons[randomIndex]
+                
+                let anno = PokeAnnotation(coord: annoCoord, pokemon: randomPokemon)
+                self.mapView.addAnnotation(anno);
+            }
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
+        if annotation is MKUserLocation {
+            // Show the trainer
+        } else {
+            if let pokeAnnotation =  annotation as? PokeAnnotation {
+                if let imageName = pokeAnnotation.pokemon.imageName {
+                    annoView.image =  UIImage(named: imageName)
+                    var frame = annoView.frame
+                    frame.size.height = 45
+                    frame.size.width = 45
+                    annoView.frame = frame
+                }
+            }
+        }
+        
+        return annoView
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
