@@ -19,17 +19,33 @@ func addAllPokemon() {
 }
 
 func createPokemon(name:String, imageName:String) {
+    // As we know that container is setup in the AppDelegates so we need to refer that container
+    guard let appDelegate =  UIApplication.shared.delegate as? AppDelegate else {return}
     
+    // create a context from the container
+    let context =  appDelegate.persistentContainer.viewContext
     
+    // create pokemon record
+    let pokemon = Pokemon(context: context)
+    pokemon.name = name;
+    pokemon.imageName = imageName
+    pokemon.caught = false
     
-    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-        let pokemon = Pokemon(context: context)
-        pokemon.name = name;
-        pokemon.imageName = imageName
-        pokemon.caught = false
-        
-        try? context.save()
+    do {
+        try context.save()
+    } catch let error as NSError {
+        print("Could not save. \(error), \(error.userInfo)")
     }
+    
+    
+//    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+//        let pokemon = Pokemon(context: context)
+//        pokemon.name = name;
+//        pokemon.imageName = imageName
+//        pokemon.caught = false
+//
+//        try? context.save()
+//    }
 }
 
 func getAllPokemons() ->[Pokemon]{
@@ -71,4 +87,23 @@ func getUncaughtPokemon() -> [Pokemon] {
     }
     
     return []
+}
+
+func deletePokemons() -> Void {
+    // As we know that container is setup in the AppDelegates so we need to refer that container
+    guard let appDelegate =  UIApplication.shared.delegate as? AppDelegate else {return}
+    
+    // create a context from the container
+    let context =  appDelegate.persistentContainer.viewContext
+    
+
+    let fetchRequest =  NSFetchRequest<NSFetchRequestResult>(entityName: "Pokemon")
+    
+    // Create Batch Delete Request
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    do {
+        try context.execute(batchDeleteRequest)
+    } catch {
+        print(error)
+    }
 }

@@ -20,6 +20,8 @@ class MapViewController: UIViewController , CLLocationManagerDelegate , MKMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        deletePokemons()
+        
         pokemons = getAllPokemons()
         
         manager.delegate = self
